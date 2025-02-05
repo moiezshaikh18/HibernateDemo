@@ -88,5 +88,7 @@ public class Main {
 
         System.out.println(a2);
 
+        System.out.println("This is mapping hibernate");
+
     }
 }
