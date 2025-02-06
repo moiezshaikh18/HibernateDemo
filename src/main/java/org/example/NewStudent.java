@@ -16,6 +16,7 @@ public class NewStudent {
     }
 
     public void setRoll_no(int roll_no) {
+        System.out.println("This is tha student roll number setter");
         this.roll_no = roll_no;
     }
 
