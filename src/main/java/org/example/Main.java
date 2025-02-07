@@ -129,7 +129,7 @@ public class Main {
 
         System.out.println(a3);
 
-        System.out.println("This is mapping hibernate");
+        System.out.println("Understanding all mapping concept");
 
     }
 }
