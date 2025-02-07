@@ -5,6 +5,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -59,13 +63,46 @@ public class Main {
         laptop.setRam(4);
 
 
-        Alien a1 = new Alien();
-        a1.setAid(102);
-        a1.setName("Rahul");
-        a1.setTech("Python");
-        a1.setLaptop(laptop);
+        Laptop laptop1 = new Laptop();
+        laptop.setLid(3);
+        laptop.setBrand("Ryzon");
+        laptop.setModel("gup");
+        laptop.setRam(9);
 
-        Alien a2 = null;
+        Laptop laptop2 = new Laptop();
+        laptop2.setLid(2);
+        laptop2.setBrand("Lenovo");
+        laptop2.setModel("IDeapad");
+        laptop2.setRam(10);
+
+
+        Alien a1 = new Alien();
+        a1.setAid(103);
+        a1.setName("Ramesh");
+        a1.setTech("java");
+//        a1.setLaptop(laptop);
+        a1.setLaptops(List.of(laptop,laptop1,laptop2));
+
+        Alien a2 = new Alien();
+        a2.setAid(104);
+        a2.setName("Yogesh");
+        a2.setTech("IOS");
+        a2.setLaptops(List.of(laptop,laptop2));
+
+        Alien a4 = new Alien();
+        a4.setAid(102);
+        a4.setName("Kiran");
+        a4.setTech("Android");
+        a4.setLaptops(List.of(laptop1));
+
+//        laptop.setAlien(a1);
+//        laptop1.setAlien(a1);
+
+        laptop.setAlien(List.of(a1,a2));
+        laptop1.setAlien(List.of(a2,a4));
+        laptop.setAlien(List.of(a4));
+
+        Alien a3 = null;
 
         SessionFactory sessionFactory = new Configuration()
                 .addAnnotatedClass(org.example.Alien.class)
@@ -78,15 +115,19 @@ public class Main {
         Transaction transaction = session.beginTransaction();
 
         session.persist(a1);
+        session.persist(a2);
+        session.persist(a4);
         session.persist(laptop);
+        session.persist(laptop1);
+        session.persist(laptop2);
 
-        a2 = session.get(Alien.class, 102);
+        a3 = session.get(Alien.class, 102);
 
         transaction.commit();
 
         session.close();
 
-        System.out.println(a2);
+        System.out.println(a3);
 
         System.out.println("This is mapping hibernate");
 

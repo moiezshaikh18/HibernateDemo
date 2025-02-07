@@ -1,8 +1,9 @@
 package org.example;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Laptop {
@@ -12,6 +13,12 @@ public class Laptop {
     private String brand;
     private String model;
     private int ram;
+
+//    @ManyToOne
+//    private Alien alien;
+
+    @ManyToMany(mappedBy = "laptops")
+    private List<Alien> alien;
 
 
     public int getLid() {
@@ -44,6 +51,14 @@ public class Laptop {
 
     public void setRam(int ram) {
         this.ram = ram;
+    }
+
+    public List<Alien> getAlien() {
+        return alien;
+    }
+
+    public void setAlien(List<Alien> alien) {
+        this.alien = alien;
     }
 
     @Override
